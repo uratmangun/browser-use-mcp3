@@ -20,6 +20,8 @@ export const metadata: ToolMetadata = {
 
 // Tool implementation
 export default async function newSession({ name }: InferSchema<typeof schema>) {
+  const apiKey = process.env.MY_API_KEY;
+  if (!apiKey) throw new Error("Missing MY_API_KEY env variable");
   const result = `New session created for ${name}`;
 
   return {
